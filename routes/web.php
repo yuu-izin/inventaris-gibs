@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RecapController;
 use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\InventoryController;
@@ -51,6 +52,14 @@ Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('item.d
 
 // rekap
 Route::get('/recap', [RecapController::class, 'index'])->name('recap.index');
+
+// officer
+Route::get('/officers', [OfficerController::class, 'index'])->name('officer.index');
+Route::get('/officers/create', [OfficerController::class, 'create'])->name('officer.create');
+Route::post('/officers', [OfficerController::class, 'store'])->name('officer.store');
+Route::get('/officers/{officer}/edit', [OfficerController::class, 'edit'])->name('officer.edit');
+Route::put('/officers/{officer}', [OfficerController::class, 'update'])->name('officer.update');
+Route::delete('/officers/{officer}', [OfficerController::class, 'destroy'])->name('officer.destroy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
