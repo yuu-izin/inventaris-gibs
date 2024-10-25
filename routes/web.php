@@ -52,6 +52,7 @@ Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('item.d
 
 // rekap
 Route::get('/recap', [RecapController::class, 'index'])->name('recap.index');
+Route::get('/recap/export', [RecapController::class, 'export'])->name('recap.export');
 
 // officer
 Route::get('/officers', [OfficerController::class, 'index'])->name('officer.index');

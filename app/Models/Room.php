@@ -21,8 +21,31 @@ class Room extends Model
             });
         }
     }
+
+    public function scopeFilterRecap($query, $params)
+    {
+        if (@$params['building']) {
+            $query->whereHas('building', function ($query) use ($params) {
+                $query->where('id', $params['building']);
+            });
+        }
+
+        // year on inventories
+        if (@$params['year']) {
+            $query->whereHas('inventories', function ($query) use ($params) {
+                $query->where('year', 'like', '%' . $params['year'] . '%');
+            });
+        }
+    }
+
+
     public function building()
     {
         return $this->belongsTo(Building::class);
+    }
+
+    public function inventories()
+    {
+        return $this->hasMany(Inventory::class, 'room_id');
     }
 }

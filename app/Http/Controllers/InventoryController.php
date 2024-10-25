@@ -23,6 +23,7 @@ class InventoryController extends Controller
                     ->orWhere('bad', 'like', "%{$search}%")
                     ->orWhere('information', 'like', "%{$search}%");
             })
+            ->where('room_id', $room_id)
             ->get();
 
         return view('pages.inventory.index', compact('inventories', 'building', 'room', 'building_id', 'room_id'));
